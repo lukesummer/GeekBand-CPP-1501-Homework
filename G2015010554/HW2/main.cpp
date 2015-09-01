@@ -9,6 +9,7 @@
 #include <iostream>
 #include "Circle.h"
 #include "Rectangle.h"
+using namespace std;
 
 int main(int argc, const char * argv[]) {
     srand((unsigned)time(NULL));//随机种子
@@ -20,21 +21,27 @@ int main(int argc, const char * argv[]) {
         shape_list[i] = new Rectangle(rand()%10+1,rand()%10+1,rand(),rand(),i);
         shape_list[i+total_count/2] = new Circle(rand()%10+1,rand()%10+1,rand()%10+1,i+10);
     }
-    for (int i; i <total_count; i++) {
+    cout << "The areas of the original list are: ";
+    for (int i = 0; i <total_count; i++) {
+        cout << shape_list[i]->getArea() << " ";
         if (shape_list[i]->getArea() > 50)
         {
             qualified_count ++;
         }
     }
+    cout << endl;
     Shape** qualified_shape_list = new Shape*[qualified_count];
-    for (int i; i<qualified_count; i++)
+    cout << "The areas of qualifed list are: ";
+    for (int i = 0; i<total_count; i++)
     {
         if(shape_list[i]->getArea() > 50)
         {
             qualified_shape_list[i] = shape_list[i];
+            cout << shape_list[i]->getArea() << " ";
         }
     }
-    for (int i; i < total_count; i++)
+    cout << endl;
+    for (int i = 0; i < total_count; i++)
     {
         delete shape_list[i];
     }
